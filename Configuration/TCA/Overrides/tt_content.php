@@ -19,7 +19,7 @@
 $GLOBALS['TCA']['tt_content']['types']['ps14_downloads']['showitem'] = \Ps14\Site\Service\TcaService::getShowitem(
 	['general', 'appearance', 'language', 'access', 'categories', 'notes', 'extended'],
 	[
-		'general' => '--palette--;;general, --palette--;;headers, --palette--;;foundation_identifier, bodytext, image, tx_foundation_elements,'
+		'general' => '--palette--;;general, --palette--;;headers, --palette--;;foundation_identifier, bodytext, tx_foundation_file,'
 	]
 );
 
@@ -28,63 +28,3 @@ $GLOBALS['TCA']['tt_content']['types']['ps14_downloads']['columnsOverrides']['bo
 	'enableRichtext' => true,
 	'richtextConfiguration' => 'ps14Default',
 ];
-
-// Crop-Varianten fuer Image-Feld
-$GLOBALS['TCA']['tt_content']['types']['ps14_downloads']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants'] = \Ps14\Site\Service\TcaService::getCropVariants(
-	[
-		'thumbnail' => [
-			'allowedAspectRatios' => ['16_9', '4_3'],
-			'selectedRatio' => '16_9'
-		],
-		'fullsize' => [
-			'allowedAspectRatios' => ['21_9', 'NaN'],
-			'selectedRatio' => '21_9'
-		]
-	]
-);
-
-// ---------------------------------------------------------------------------------------------------------------------
-// Elements TCA anpassen
-
-// Definition Record
-$GLOBALS['TCA']['tt_content']['types']['ps14_downloads']['columnsOverrides']['tx_foundation_elements']['config']['overrideChildTca'] = [
-	'columns' => [
-		'record_type' => [
-			'config' => [
-				'items' => [
-					[
-						'label' => 'LLL:EXT:ps14_downloads/Resources/Private/Language/locallang_tca.xlf:elements.record-type.default',
-						'value' => 'ps14_downloads_default'
-					],
-				],
-				'default' => 'ps14_downloads_default'
-			]
-		],
-		'description' => [
-			'config' => [
-				'richtextConfiguration' => 'ps14Default'
-			]
-		]
-	],
-	'types' => [
-		'ps14_downloads_default' => [
-			'showitem' => \Ps14\Site\Service\TcaService::getShowitem(
-				['general', 'appearance', 'access'],
-				[
-					'general' => '--palette--;;general, --palette--;;header, description, media,'
-				],
-				'tx_foundation_domain_model_elements'
-			)
-		],
-	]
-];
-
-// Anpassung Crop-Varianten fuer Elements
-$GLOBALS['TCA']['tt_content']['types']['ps14_downloads']['columnsOverrides']['tx_foundation_elements']['config']['overrideChildTca']['columns']['media']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants'] = \Ps14\Site\Service\TcaService::getCropVariants(
-	[
-		'default' => [
-			'allowedAspectRatios' => ['16_9'],
-			'selectedRatio' => '16_9'
-		],
-	]
-);
