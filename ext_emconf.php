@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-	'title' => 'Ps14 Modulor',
-	'description' => 'TYPO3 Extension serves as a template for TYPO3 modules',
+	'title' => 'Ps14 Downloads',
+	'description' => 'A TYPO3 extension containing a module for provisioning and managing file downloads',
 	'category' => 'distribution',
 	'author' => 'Christian Pschorr',
 	'author_email' => 'pschorr.christian@gmail.com',
